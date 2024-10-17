@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Dropdown Example</title>
+</head>
+<body>
+
+    <h1>Welcome to My Website</h1>
+    <label for="language-dropdown">Select Language:</label>
+    <select id="language-dropdown">
+        <option value="en" selected>English</option>
+    </select>
+
+    <script>
+        // Language detection
+        const userLang = navigator.language || navigator.userLanguage; 
+
+        const languages = {
+            "IN": ["Hindi", "English"], // India
+            "US": ["Spanish", "French"], // USA
+            // Add more countries and their languages here
+            "FR": ["French", "English"], // France
+            "DE": ["German", "English"]   // Germany
+        };
+
+        // Simulating country detection based on language code
+        const countryMap = {
+            "en-IN": "IN",
+            "en-US": "US",
+            "fr-FR": "FR",
+            "de-DE": "DE"
+        };
+
+        const userCountry = countryMap[userLang] || "US"; // Default to US if not found
+
+        // Populate dropdown based on user country
+        const dropdown = document.getElementById("language-dropdown");
+        const availableLanguages = languages[userCountry];
+
+        availableLanguages.forEach(lang => {
+            const option = document.createElement("option");
+            option.value = lang.toLowerCase();
+            option.text = lang;
+            dropdown.appendChild(option);
+        });
+    </script>
+
+</body>
+</html>
